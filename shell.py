@@ -27,11 +27,11 @@ class Shell:
             elif args[0] == "help":
                 self.display_help()
             elif args[0] == "create" and len(args) == 2:
-                self.file_manager.create_file(args[1])
+                self.file_manager.creating_file(args[1])
             elif args[0] == "delete" and len(args) == 2:
-                self.file_manager.delete_file(args[1])
+                self.file_manager.deleting_file(args[1])
             elif args[0] == "rename" and len(args) == 3:
-                self.file_manager.rename_file(args[1], args[2])
+                self.file_manager.renaming_file(args[1], args[2])
             elif args[0] == "make" and len(args) == 2:
                 self.directory_manager.make_directory(args[1])
             elif args[0] == "remove" and len(args) == 2:
@@ -67,7 +67,7 @@ class Shell:
         print("Supported commands:")
         print("create <file_name> - Create a new file")
         print("delete <file_name> - Delete an existing file")
-        print("rename <old_name> <new_name> - Rename a file")
+        print("rename <previous_name> <new_name> - Rename a file")
         print("make <dir_name> - Create a new directory")
         print("remove <dir_name> - Remove an empty directory")
         print("change <dir_name> - Change the current working directory")
