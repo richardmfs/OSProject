@@ -1,3 +1,5 @@
+#Hueland Hunter ID-2006702, Monica Foreshaw - 2104888, Richard Patterson - 2303690, Shamori Henry - 2100438
+
 import subprocess
 from file_manager import FileManager
 from directory_manager import DirectoryManager

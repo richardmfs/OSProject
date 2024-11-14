@@ -1,3 +1,5 @@
+#Richard Patterson - 2303690
+
 import os
 
 class DirectoryManager: 
