@@ -132,7 +132,7 @@ class Shell:
         print("Supported commands:")
         print("create <file_name> - Create a new file")
         print("delete <file_name> - Delete an existing file")
-        print("rename <old_name> <new_name> - Rename a file")
+        print("rename <previous_name> <new_name> - Rename a file")
         print("make <dir_name> - Create a new directory")
         print("remove <dir_name> - Remove an empty directory")
         print("change <dir_name> - Change the current working directory")
