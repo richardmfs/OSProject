@@ -1,25 +1,25 @@
 #Hueland Hunter ID-2006702, Monica Foreshaw - 2104888, Richard Patterson - 2303690, Shamori Henry - 2100438
 
-import subprocess
 import os
+import subprocess
 from file_manager import FileManager
-from directory_manager import DirectoryManager
-from permission_manager import PermissionManager
+from directoryManagement import DirectoryManager
+from permissions_manager import PermissionManager
 
 class Shell:
-    # Initializes the shell with instances of file, directory, and permission managers
+    # Initializes the shell and creates instances of file, directory, and permission managers
     def __init__(self):
         self.file_manager = FileManager()
         self.directory_manager = DirectoryManager()
-        self.permission_manager = PermissionManager()
+        self.permissions_manager = PermissionManager()
 
-    # Main loop of the shell
+    # Main loop of the shell, takes user input and processes commands
     def start(self):
         while True:
-            # Display the shell prompt
-            command = input("custom-shell> ").strip()
-            if not command:
-                continue  # Skip empty input
+            # Display shell prompt and read command from user
+            command = input("custom-shell> ")
+            if not command.strip():  # Ignore empty input
+                continue
 
             # Check for special commands
             if command.endswith("&"):
