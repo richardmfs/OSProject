@@ -3,8 +3,8 @@
 import os
 import subprocess
 from file_manager import FileManager
-from directoryManagement import DirectoryManager
-from permissions_manager import PermissionManager
+from directory_manager import DirectoryManager
+from permission_manager import PermissionManager
 
 class Shell:
     # Initializes the shell and creates instances of file, directory, and permission managers
