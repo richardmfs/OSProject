@@ -4,24 +4,24 @@ import os
 
 class FileManager:
     # A method is created that takes two parameter self and the name of the file
-    def creating_file(self, name):
+    def creating_file(self, file_name):
         try:  # try block is for handling the exceptions
-            with open(name, 'w') as f:  # this allows the file to be open in write mode
+            with open(file_name, 'w') as f:  # this allows the file to be open in write mode
                 pass
             # The message is printed when the file is created
-            print(f"The file by the name of '{name}' is created.")
+            print(f"The file by the name of '{file_name}' is created.")
         except Exception as e:  # this except block allows the message to be printed when an error occurs
-            print(f"There is an error creating a file '{name}': {e}")  # error message
+            print(f"There is an error creating a file '{file_name}': {e}")  # error message
 
     # method for deleting a file
-    def deleting_file(self, name):
+    def deleting_file(self, file_name):
         try:  # try block handles any error
-            os.remove(name)  # this removes the file according to its name
-            print(f"The file '{name}' has been deleted.")  # message when file is deleted successfully
+            os.remove(file_name)  # this removes the file according to its name
+            print(f"The file '{file_name}' has been deleted.")  # message when file is deleted successfully
         except FileNotFoundError:  # this occurs when a file is not found
-            print(f"Error: The file '{name}' does not exist.")  # printed if FileNotFoundError arises
+            print(f"Error: The file '{file_name}' does not exist.")  # printed if FileNotFoundError arises
         except Exception as e:  # handles unexpected errors
-            print(f"Error deleting file '{name}': {e}")  # error message
+            print(f"Error deleting file '{file_name}': {e}")  # error message
 
     # method for renaming file
     def renaming_file(self, previous_name, new_name):

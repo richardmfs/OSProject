@@ -39,17 +39,17 @@ class Shell:
                 if len(args) != 2:
                     print("Usage: create <file_name> - Create a new file")
                 else:
-                    self.file_manager.create_file(args[1])
+                    self.file_manager.creating_file(args[1])
             elif args[0] == "delete":
                 if len(args) != 2:
                     print("Usage: delete <file_name> - Delete an existing file")
                 else:
-                    self.file_manager.delete_file(args[1])
+                    self.file_manager.deleting_file(args[1])
             elif args[0] == "rename":
                 if len(args) != 3:
                     print("Usage: rename <previous_name> <new_name> - Rename a file")
                 else:
-                    self.file_manager.rename_file(args[1], args[2])
+                    self.file_manager.renaming_file(args[1], args[2])
             elif args[0] == "make":
                 if len(args) != 2:
                     print("Usage: make <dir_name> - Create a new directory")
