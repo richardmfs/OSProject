@@ -27,11 +27,14 @@ class Shell:
             elif command.strip() == "help":
                 self.display_help()
                 continue
-
+        # Check For Piping
+            if "|" in command:
+                self.handle_piping(command)
+                continue        
         # Check for redirection in the command and handle it
             if ">" in command or "<" in command:
                 self.handle_redirection(command)
-            else:
+                continue
             # Split the input command into arguments for non-redirection commands
                 args = command.split()
             # Handle internal commands or execute as external
@@ -114,36 +117,36 @@ class Shell:
 
     # Handles piping between commands
     def handle_piping(self, command):
-        # Split commands by pipe (|) symbol and create a list of commands
         commands = [cmd.strip().split() for cmd in command.split("|")]
         processes = []
-
-        # Set up the pipeline chain
         for i, cmd in enumerate(commands):
             if i == 0:
-                # First command takes input from stdin
-                processes.append(subprocess.Popen(cmd, stdout=subprocess.PIPE))
+                processes.append(subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE))
             elif i == len(commands) - 1:
-                # Last command outputs to stdout
-                processes.append(subprocess.Popen(cmd, stdin=processes[-1].stdout))
+                processes.append(subprocess.Popen(cmd, stdin=processes[-1].stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE))
             else:
-                # Middle commands, pipe input and output
-                processes.append(subprocess.Popen(cmd, stdin=processes[-1].stdout, stdout=subprocess.PIPE))
-
+                processes.append(subprocess.Popen(cmd, stdin=processes[-1].stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE))
+                processes[-2].stdout.close()
+        stdout, stderr = processes[-1].communicate()
+        if stdout:
+            print(stdout.decode())
+        if stderr:
+            print(stderr.decode())
+        for p in processes:
+            p.wait()
 
 
     # Displays a list of supported commands and their usage
     def display_help(self):
         print("Supported commands:")
-        print("create <file_name> - Create a new file")
-        print("delete <file_name> - Delete an existing file")
+        print("create <file_name>                - Create a new file")
+        print("delete <file_name>                - Delete an existing file")
         print("rename <previous_name> <new_name> - Rename a file")
-        print("make <dir_name> - Create a new directory")
-        print("remove <dir_name> - Remove an empty directory")
-        print("change <dir_name> - Change the current working directory")
-        print("modify <file_name> <readable> <writable> <executable> - Set file permissions")
-        print("ls -l - List file attributes")
-        print("Use > or < for output/input redirection, e.g., `ls > output.txt` or `wc < input.txt`")
-        print("Use | for piping commands, e.g., `ls | grep txt`")
-        print("Use & at the end of a command to run it in the background, e.g., `sleep 5 &`")
+        print("make <dir_name>                   - Create a new directory")
+        print("remove <dir_name>                 - Remove an empty directory")
+        print("change <dir_name>                 - Change the current working directory")
+        print("modify <file> <r> <w> <x>- Set permissions (true/false for read/write/execute) - Set permissions")
+        print("ls -l                             - List file attributes")
+        print("Use > or < for output/input redirection, e.g., `ls > output.txt` or `wc < input.txt` - Redirection")
+        print("Use | for piping commands, e.g., `ls | grep txt` - Piping Commands")
         print("exit - Exit the shell")
