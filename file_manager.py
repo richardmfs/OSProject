@@ -1,36 +1,34 @@
 #Monica Foreshaw ID-2104888
 #ID-2104888
-import os
 
 class FileManager:
-    # A method is created that takes two parameter self and the name of the file
-    def creating_file(self, file_name):
-        try:  # try block is for handling the exceptions
-            with open(file_name, 'w') as f:  # this allows the file to be open in write mode
+    # A method is created that takes two parameters: self and the name of the file
+    def create_file(self, file_name):
+        try:  # Try block is for handling the exceptions
+            with open(file_name, 'w') as f:  # This allows the file to be opened in write mode
                 pass
             # The message is printed when the file is created
-            print(f"The file by the name of '{file_name}' is created.")
-        except Exception as e:  # this except block allows the message to be printed when an error occurs
-            print(f"There is an error creating a file '{file_name}': {e}")  # error message
+            print(f"File '{file_name}' created.")
+        except Exception as e:  # This except block allows the message to be printed when an error occurs
+            print(f"Error creating file '{file_name}': {e}")  # Error message
 
-    # method for deleting a file
-    def deleting_file(self, file_name):
-        try:  # try block handles any error
-            os.remove(file_name)  # this removes the file according to its name
-            print(f"The file '{file_name}' has been deleted.")  # message when file is deleted successfully
-        except FileNotFoundError:  # this occurs when a file is not found
-            print(f"Error: The file '{file_name}' does not exist.")  # printed if FileNotFoundError arises
-        except Exception as e:  # handles unexpected errors
-            print(f"Error deleting file '{file_name}': {e}")  # error message
+    # A method for deleting a file
+    def delete_file(self, file_name):
+        try:  # Try block handles any error
+            os.remove(file_name)  # This removes the file according to its name
+            print(f"File '{file_name}' deleted.")  # Message when the file is deleted successfully
+        except FileNotFoundError:  # This occurs when a file is not found
+            print(f"Error: File '{file_name}' does not exist.")  # Printed if FileNotFoundError arises
+        except Exception as e:  # Handles unexpected errors
+            print(f"Error deleting file '{file_name}': {e}")  # Error message
 
-    # method for renaming file
-    def renaming_file(self, previous_name, new_name):
-        try:  # try block handles any error
-            os.rename(previous_name, new_name)  # renames file from previous name to new name
-            print(f"The file renamed from '{previous_name}' to '{new_name}'.")  # success message
-        except FileNotFoundError:  # occurs if file is not found
-            print(f"Error: The file by the name of '{previous_name}' doesn't exist.")  # message if FileNotFoundError arises
-        except Exception as e:  # handles unexpected errors that arises when running the file
-            print(f"An error occurred when renaming the file: {e}")  # error message
-
+    # A method for renaming a file
+    def rename_file(self, old_name, new_name):
+        try:  # Try block handles any error
+            os.rename(old_name, new_name)  # Renames file from old_name to new_name
+            print(f"File renamed from '{old_name}' to '{new_name}'.")  # Success message
+        except FileNotFoundError:  # Occurs if the file is not found
+            print(f"Error: File '{old_name}' does not exist.")  # Message if FileNotFoundError arises
+        except Exception as e:  # Handles unexpected errors that arise when running the file
+            print(f"Error renaming file: {e}")  # Error message
 
