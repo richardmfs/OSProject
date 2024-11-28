@@ -27,32 +27,33 @@ class Shell:
             elif command.strip() == "help":
                 self.display_help()
                 continue
-        # Check For Piping
+                
             if "|" in command:
                 self.handle_piping(command)
-                continue        
+                continue
+
         # Check for redirection in the command and handle it
             if ">" in command or "<" in command:
                 self.handle_redirection(command)
                 continue
             # Split the input command into arguments for non-redirection commands
-                args = command.split()
+            args = command.split()
             # Handle internal commands or execute as external
             if args[0] == "create":
                 if len(args) != 2:
                     print("Usage: create <file_name> - Create a new file")
                 else:
-                    self.file_manager.creating_file(args[1])
+                    self.file_manager.create_file(args[1])
             elif args[0] == "delete":
                 if len(args) != 2:
                     print("Usage: delete <file_name> - Delete an existing file")
                 else:
-                    self.file_manager.deleting_file(args[1])
+                    self.file_manager.delete_file(args[1])
             elif args[0] == "rename":
                 if len(args) != 3:
                     print("Usage: rename <previous_name> <new_name> - Rename a file")
                 else:
-                    self.file_manager.renaming_file(args[1], args[2])
+                    self.file_manager.rename_file(args[1], args[2])
             elif args[0] == "make":
                 if len(args) != 2:
                     print("Usage: make <dir_name> - Create a new directory")
@@ -139,14 +140,30 @@ class Shell:
     # Displays a list of supported commands and their usage
     def display_help(self):
         print("Supported commands:")
-        print("create <file_name>                - Create a new file")
-        print("delete <file_name>                - Delete an existing file")
+        print(" ")
+        print("create <file_name> - Create a new file")
+        print(" ")
+        print("delete <file_name> - Delete an existing file")
+        print(" ")
         print("rename <previous_name> <new_name> - Rename a file")
-        print("make <dir_name>                   - Create a new directory")
-        print("remove <dir_name>                 - Remove an empty directory")
-        print("change <dir_name>                 - Change the current working directory")
-        print("modify <file> <r> <w> <x>- Set permissions (true/false for read/write/execute) - Set permissions")
-        print("ls -l                             - List file attributes")
-        print("Use > or < for output/input redirection, e.g., `ls > output.txt` or `wc < input.txt` - Redirection")
-        print("Use | for piping commands, e.g., `ls | grep txt` - Piping Commands")
+        print(" ")
+        print("make <dir_name> - Create a new directory")
+        print(" ")
+        print("remove <dir_name> - Remove an empty directory")
+        print(" ")
+        print("change <dir_name> - Change the current working directory")
+        print(" ")
+        print("modify <file_name> <readable> <writable> <executable> example = modify file.txt true false false (changes file permissions to readable) - Set file permissions")
+        print(" ")
+        print("ls -l - List file attributes")
+        print(" ")
+        print("Use > or < for output/input redirection, e.g., `ls > output.txt` or `wc < input.txt`")
+        print(" ")
+        print("Use | for piping commands, e.g., `ls | grep txt`")
+        print(" ")
         print("exit - Exit the shell")
+
+
+
+
+           
